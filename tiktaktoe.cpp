@@ -8,9 +8,15 @@ struct Player {
 };
 
 void display_grid(char** tab, size_t length) {
+    cout <<  "      ";
+    for (int i=0; i < length; i++) {
+        cout << "  C" << i+1 << "    "; 
+    }
+    cout << endl;
 
     // pour chaque ligne de la grille
     for (int i=0; i<length; i++) {
+        cout << "      ";
         // la ligne numero 1 de chaque ligne de la grille
         for (int j=0; j<length; j++) {
             if (j < length -1 ){
@@ -21,6 +27,7 @@ void display_grid(char** tab, size_t length) {
             }
         }
         // la ligne numero 2 de chaque ligne de la grille
+        cout << "  R" << i+1 << "  ";
         for (int j=0; j<length; j++) {
             if (j < length - 1) {
                 cout << "   " << (tab[i][j] != 0 ? tab[i][j] : ' ') <<"   |";
@@ -31,6 +38,7 @@ void display_grid(char** tab, size_t length) {
         }
         
         // la ligne numero 3 de chaque ligne de la grille
+        cout << "      ";
         if (i<length-1) {
             for (int j=0; j < length; j++) {
                 if (j < length-1) {
@@ -71,10 +79,23 @@ void play_turn(Player player, char** tab, size_t n) {
     cout << player.name << "'s turn!" << endl << endl;
 
     size_t row, col;
+
     cout << "Enter row: ";
     cin >> row;
+    while (row <= 0 || row > n) {
+        cout << "Row is not in range!" << endl << "Re-enter row: ";
+        cin >> row;
+    }
+    
+
+    
     cout << "Enter col: ";
     cin >> col;
+    while (col <= 0 || col > n) {
+        cout << "Column is not in range!" << endl << "Re-enter col: ";
+        cin >> col;
+    }
+    
     system ("clear");
     if (is_tile_empty(tab, row, col)) {
         put_symbol_on_grid(tab, player.symbol, row, col);
