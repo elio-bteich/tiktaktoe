@@ -134,9 +134,9 @@ bool is_winner(char symbol, char** tab, size_t n) {
     }
 
     // diagonale bas-gauche haut-droite
-    if (symbol == tab[2][0]) {
+    if (symbol == tab[n-1][0]) {
         for (size_t i = 0; i < n; i++) {
-            symbols_arr[i] = tab[2-i][i];
+            symbols_arr[i] = tab[n-1-i][i];
         }
         if (are_equals(symbols_arr, n)) {
             return true;
