@@ -266,4 +266,12 @@ int main()
 
     display_grid(tab, n);
     cout << players_arr[turn].name << " a gagné le jeu!" << endl;
+
+    // desallocation de chaque ligne de la grille
+    for (int i = 0; i < n; i++){
+        delete [] tab[i];
+    }
+    
+    // desallocation de la grille
+    delete [] tab;
 }
